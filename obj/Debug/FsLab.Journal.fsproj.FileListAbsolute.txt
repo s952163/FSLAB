@@ -1,0 +1,7 @@
+C:\Users\s9951_000\Documents\Visual Studio 2015\Projects\FsLab.Templates-journal\bin\Debug\FsLab_Journal.XML
+C:\Users\s9951_000\Documents\Visual Studio 2015\Projects\FsLab.Templates-journal\bin\Debug\FsLab.Journal.exe
+C:\Users\s9951_000\Documents\Visual Studio 2015\Projects\FsLab.Templates-journal\bin\Debug\FsLab.Journal.pdb
+C:\Users\s9951_000\Documents\Visual Studio 2015\Projects\FsLab.Templates-journal\bin\Debug\FSharp.Core.dll
+C:\Users\s9951_000\Documents\Visual Studio 2015\Projects\FsLab.Templates-journal\bin\Debug\FSharp.Core.xml
+C:\Users\s9951_000\Documents\Visual Studio 2015\Projects\FsLab.Templates-journal\obj\Debug\FsLab.Journal.exe
+C:\Users\s9951_000\Documents\Visual Studio 2015\Projects\FsLab.Templates-journal\obj\Debug\FsLab.Journal.pdb
