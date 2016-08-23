@@ -5,3 +5,11 @@ C:\Users\s9951_000\Documents\Visual Studio 2015\Projects\FsLab.Templates-journal
 C:\Users\s9951_000\Documents\Visual Studio 2015\Projects\FsLab.Templates-journal\bin\Debug\FSharp.Core.xml
 C:\Users\s9951_000\Documents\Visual Studio 2015\Projects\FsLab.Templates-journal\obj\Debug\FsLab.Journal.exe
 C:\Users\s9951_000\Documents\Visual Studio 2015\Projects\FsLab.Templates-journal\obj\Debug\FsLab.Journal.pdb
+c:\Users\verepet\Documents\Visual Studio 2015\Projects\FSLAB\bin\Debug\FsLab_Journal.XML
+c:\Users\verepet\Documents\Visual Studio 2015\Projects\FSLAB\bin\Debug\FsLab.Journal.exe
+c:\Users\verepet\Documents\Visual Studio 2015\Projects\FSLAB\bin\Debug\FsLab.Journal.pdb
+c:\Users\verepet\Documents\Visual Studio 2015\Projects\FSLAB\bin\Debug\FSharp.Core.dll
+c:\Users\verepet\Documents\Visual Studio 2015\Projects\FSLAB\bin\Debug\FSharp.Core.xml
+c:\Users\verepet\Documents\Visual Studio 2015\Projects\FSLAB\obj\Debug\FsLab.Journal.fsprojResolveAssemblyReference.cache
+c:\Users\verepet\Documents\Visual Studio 2015\Projects\FSLAB\obj\Debug\FsLab.Journal.exe
+c:\Users\verepet\Documents\Visual Studio 2015\Projects\FSLAB\obj\Debug\FsLab.Journal.pdb

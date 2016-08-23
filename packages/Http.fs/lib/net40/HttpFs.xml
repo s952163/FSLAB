@@ -1,0 +1,582 @@
+<?xml version="1.0" encoding="utf-8"?>
+<doc>
+<assembly><name>HttpFs</name></assembly>
+<members>
+<member name="P:HttpFs.Client.HttpFsState.empty">
+<summary>
+ Will re-generate random CLR per-app-domain -- create your own state for
+ deterministic boundary generation (or anything else needing random).
+</summary>
+</member>
+<member name="P:HttpFs.Client.Response.expectedEncoding">
+<summary>
+ A Uri that contains the URI of the Internet resource that responded to the request.
+ &lt;see cref=&quot;https://msdn.microsoft.com/en-us/library/system.net.httpwebresponse.responseuri%28v=vs.110%29.aspx&quot;/&gt;.
+</summary>
+</member>
+<member name="T:HttpFs.Client.CookieName">
+<summary>
+ The name (key) of a cookie.
+ The string value is unencoded.
+</summary>
+</member>
+<member name="T:HttpFs.Client.Form">
+<summary>
+ You often pass form-data to the server, e.g. curl -X POST &lt;url&gt; -F k=v -F file1=@file.png
+</summary>
+</member>
+<member name="T:HttpFs.Client.FormData.NameValue">
+<summary>
+ Use when you simply post form data
+</summary>
+</member>
+<member name="T:HttpFs.Client.FormData.MultipartMixed">
+<summary>
+ Use when you post multiple files as a multi-file-browse control
+ Will use: multipart/mixed inside a multipart/form-data.
+</summary>
+</member>
+<member name="T:HttpFs.Client.FormData.FormFile">
+<summary>
+ Use when you post a single file
+ Will use: multipart/form-data
+</summary>
+</member>
+<member name="T:HttpFs.Client.FormData">
+<summary>
+ http://www.w3.org/TR/html401/interact/forms.html
+</summary>
+</member>
+<member name="T:HttpFs.Client.File">
+<summary>
+ A file is a file name, a content-type (application/octet-stream if unknown) and the data.
+</summary>
+</member>
+<member name="T:HttpFs.Client.FileName">
+<summary>
+ An optional file name
+</summary>
+</member>
+<member name="P:HttpFs.Client.ContentDisposition.exts">
+<summary>
+ e.g. &quot;name=user_name&quot;
+</summary>
+</member>
+<member name="T:HttpFs.Client.ContentDisposition">
+<summary>
+ http://www.w3.org/Protocols/rfc2616/rfc2616-sec19.html
+ section 19.5.1 Content-Disposition, BNF.
+</summary>
+</member>
+<member name="T:HttpFs.Client.QueryStringValue">
+<summary>
+ The string value is not yet encoded.
+</summary>
+</member>
+<member name="T:HttpFs.Client.QueryStringName">
+<summary>
+ The key of a query string key-value pair.
+ The string value is not yet encoded.
+</summary>
+</member>
+<member name="T:HttpFs.Client.FormValue">
+<summary>
+ The string value is not yet encoded.
+</summary>
+</member>
+<member name="T:HttpFs.Client.FormEntryName">
+<summary>
+ The key you have in &amp;lt;input name=&quot;key&quot; ... /&amp;gt;
+ This string value is not yet encoded.
+</summary>
+</member>
+<member name="M:HttpFs.Client.getResponse(HttpFs.Client.Request)">
+<summary>
+ Sends the HTTP request and returns the full response as a Response record, asynchronously.
+</summary>
+</member>
+<member name="T:HttpFs.Client.DuplicateHeader">
+<summary>
+ The header you tried to add was already there, see issue #64.
+</summary>
+</member>
+<member name="M:HttpFs.Client.RequestModule.responseAsBytes(HttpFs.Client.Request)">
+<summary>
+ Note: this sends the request, reads the response, disposes it and its stream
+</summary>
+</member>
+<member name="M:HttpFs.Client.RequestModule.responseAsString(HttpFs.Client.Request)">
+<summary>
+ Note: this sends the request, reads the response, disposes it and its stream
+</summary>
+</member>
+<member name="M:HttpFs.Client.RequestModule.timeout(System.Int32,HttpFs.Client.Request)">
+<summary>
+ TODO: use as filter instead (composition)
+</summary>
+</member>
+<member name="M:HttpFs.Client.RequestModule.keepAlive(System.Boolean,HttpFs.Client.Request)">
+<summary>
+ Sets the keep-alive header.  Defaults to true.
+
+ If true, Connection header also set to &apos;Keep-Alive&apos;
+ If false, Connection header also set to &apos;Close&apos;
+
+ NOTE: If true, headers only sent on first request.
+</summary>
+</member>
+<member name="M:HttpFs.Client.RequestModule.proxy(HttpFs.Client.Proxy,HttpFs.Client.Request)">
+<summary>
+ Sends the request via the provided proxy.
+
+ If this is no set, the proxy settings from IE will be used, if available.
+</summary>
+</member>
+<member name="M:HttpFs.Client.RequestModule.responseCharacterEncoding(System.Text.Encoding,HttpFs.Client.Request)">
+<summary>
+ Decodes the response using the specified encoding, regardless of what the response specifies.
+
+ If this is not set, response character encoding will be:
+  - taken from the response content-encoding header, if provided, otherwise
+  UTF8
+
+ Many web pages define the character encoding in the HTML. This will not be used.
+</summary>
+</member>
+<member name="M:HttpFs.Client.RequestModule.cookie(HttpFs.Client.Cookie,HttpFs.Client.Request)">
+<summary>
+ Adds a cookie to the request
+ The domain will be taken from the URL, and the path set to &apos;/&apos;.
+
+ If your cookie appears not to be getting set, it could be because the response is a redirect,
+ which (by default) will be followed automatically, but cookies will not be re-sent.
+</summary>
+</member>
+<member name="M:HttpFs.Client.RequestModule.queryStringItem(System.String,System.String,HttpFs.Client.Request)">
+<summary>
+ Adds the provided QueryString record onto the request URL.
+ Multiple items can be appended, but only the last appended key/value with
+ the same key as a previous key/value will be used.
+</summary>
+</member>
+<member name="M:HttpFs.Client.RequestModule.bodyStringEncoded(System.String,System.Text.Encoding,HttpFs.Client.Request)">
+<summary>
+ Sets the request body, using the provided character encoding.
+</summary>
+</member>
+<member name="M:HttpFs.Client.RequestModule.bodyString(System.String,HttpFs.Client.Request)">
+<summary>
+ Sets the the request body, using UTF-8 character encoding.
+
+ Only certain request types should have a body, e.g. Posts.
+</summary>
+</member>
+<member name="M:HttpFs.Client.RequestModule.body(HttpFs.Client.RequestBody,HttpFs.Client.Request)">
+<summary>
+ Lets you set your own body - use the RequestBody type to build it up.
+</summary>
+</member>
+<member name="M:HttpFs.Client.RequestModule.autoDecompression(HttpFs.Client.DecompressionScheme,HttpFs.Client.Request)">
+<summary>
+ Sets the accept-encoding request header to accept the decompression methods selected,
+ and automatically decompresses the responses.
+
+ Multiple schemes can be OR&apos;d together, e.g. (DecompressionScheme.Deflate ||| DecompressionScheme.GZip)
+</summary>
+</member>
+<member name="M:HttpFs.Client.RequestModule.withNTLMAuthentication(System.String,System.String,HttpFs.Client.Request)">
+<summary>
+ Adds a credential cache to support NTLM authentication
+</summary>
+</member>
+<member name="M:HttpFs.Client.RequestModule.basicAuthentication(System.String,System.String)">
+<summary>
+ Adds an HTTP Basic Authentication header, which includes the username and password encoded as a base-64 string
+</summary>
+</member>
+<member name="M:HttpFs.Client.RequestModule.setHeader(HttpFs.Client.RequestHeader,HttpFs.Client.Request)">
+<summary>
+ Adds a header, defined as a RequestHeader
+ The current implementation doesn&apos;t allow you to add a single header multiple
+ times. File an issue if this is a limitation for you.
+</summary>
+</member>
+<member name="M:HttpFs.Client.RequestModule.autoFollowRedirectsDisabled(HttpFs.Client.Request)">
+<summary>
+ Disables automatic following of redirects, which is enabled by default
+</summary>
+</member>
+<member name="M:HttpFs.Client.RequestModule.cookiesDisabled(HttpFs.Client.Request)">
+<summary>
+ Disables cookies, which are enabled by default
+</summary>
+</member>
+<member name="M:HttpFs.Client.RequestModule.createUrl(HttpFs.Client.HttpMethod,System.String)">
+<summary>
+ The default value is 100,000 milliseconds (100 seconds).
+ &lt;see cref=&quot;https://msdn.microsoft.com/en-us/library/system.net.httpwebrequest.timeout%28v=vs.110%29.aspx&quot;/&gt;.
+</summary>
+</member>
+<member name="M:HttpFs.Client.RequestModule.create(HttpFs.Client.HttpMethod,System.Uri)">
+ <summary>Creates the Request record which can be used to make an HTTP request</summary>
+ <param name="httpMethod">The type of request to be made (Get, Post, etc.)</param>
+ <param name="url">The URL of the resource including protocol, e.g. 'http://www.relentlessdevelopment.net'</param>
+ <returns>The Request record</returns>
+</member>
+<member name="T:HttpFs.Client.RequestModule">
+<summary>
+ For those of you who can&apos;t be bothered to use getResponse |&gt; Response.readBodyAsString.
+</summary>
+</member>
+<member name="M:HttpFs.Client.DotNetWrapper.getHeadersAsMap(System.Net.HttpWebResponse)">
+<summary>
+ Gets the headers from the passed response as a map of ResponseHeader and string.
+</summary>
+</member>
+<member name="M:HttpFs.Client.DotNetWrapper.getResponseHeader(System.String)">
+<summary>
+ Get the header as a ResponseHeader option. Is an option because there are some headers we don&apos;t want to set.
+</summary>
+</member>
+<member name="M:HttpFs.Client.DotNetWrapper.getResponseNoException(System.Net.HttpWebRequest)">
+<summary>
+ Uses the HttpWebRequest to get the response.
+ HttpWebRequest throws an exception on anything but a 200-level response,
+ so we handle such exceptions and return the response.
+</summary>
+</member>
+<member name="M:HttpFs.Client.DotNetWrapper.getRawRequestBodyString(HttpFs.Client.HttpFsState,HttpFs.Client.Request)">
+<summary>
+ For debugging purposes only
+ Converts the Request body to a format suitable for HttpWebRequest and returns this raw body as a string.
+</summary>
+</member>
+<member name="M:HttpFs.Client.DotNetWrapper.toHttpWebRequest(HttpFs.Client.HttpFsState,HttpFs.Client.Request)">
+<summary>
+ The nasty business of turning a Request into an HttpWebRequest
+</summary>
+</member>
+<member name="M:HttpFs.Client.DotNetWrapper.tryWriteBody(System.Collections.Generic.IEnumerable{Microsoft.FSharp.Core.FSharpFunc{System.IO.Stream,Hopac.Job{Microsoft.FSharp.Core.Unit}}},System.Net.HttpWebRequest)">
+<summary>
+ Sets body on HttpWebRequest.
+ Mutates HttpWebRequest.
+</summary>
+</member>
+<member name="M:HttpFs.Client.DotNetWrapper.setNetworkCredentials(Microsoft.FSharp.Core.FSharpOption{HttpFs.Client.Credentials},System.Net.HttpWebRequest)">
+<summary>
+ Sets NetworkCredentials on HttpWebRequest.
+ Mutates HttpWebRequest.
+</summary>
+</member>
+<member name="M:HttpFs.Client.DotNetWrapper.setProxy(Microsoft.FSharp.Core.FSharpOption{HttpFs.Client.Proxy},System.Net.HttpWebRequest)">
+<summary>
+ Sets proxy on HttpWebRequest.
+ Mutates HttpWebRequest.
+</summary>
+</member>
+<member name="M:HttpFs.Client.DotNetWrapper.setCookies(Microsoft.FSharp.Collections.FSharpList{HttpFs.Client.Cookie},System.Uri,System.Net.HttpWebRequest)">
+<summary>
+ Sets cookies on HttpWebRequest.
+ Mutates HttpWebRequest.
+</summary>
+</member>
+<member name="M:HttpFs.Client.DotNetWrapper.setHeaders(Microsoft.FSharp.Collections.FSharpList{HttpFs.Client.RequestHeader},System.Net.HttpWebRequest)">
+<summary>
+ Sets headers on HttpWebRequest.
+ Mutates HttpWebRequest.
+</summary>
+</member>
+<member name="M:HttpFs.Client.Impl.uriEncode(System.Text.Encoding)">
+<summary>
+ URI encoding: for each byte in the byte-representation of the string,
+ as seen after encoding with a given `byteEncoding`, print the %xx character
+ as an ASCII character, for transfer.
+
+ Pass the byteEncoding -- this is equivalent of the
+ `accept-charset` attribute on the form-element in HTML. If you don&apos;t
+ know what to do: pass UTF8 and it will &apos;just work&apos;.
+</summary>
+</member>
+<member name="P:HttpFs.Client.Impl.StreamWriters.writeUtf8">
+<summary>
+ Writes a string as UTF8
+</summary>
+</member>
+<member name="M:HttpFs.Client.Impl.StreamWriters.writeLineUtf8(System.String)">
+<summary>
+ Writes a string and CRLF as UTF8
+</summary>
+</member>
+<member name="P:HttpFs.Client.Impl.StreamWriters.writeAscii">
+<summary>
+ Writes a string as ASCII
+</summary>
+</member>
+<member name="M:HttpFs.Client.Impl.StreamWriters.writeLineAscii(System.String)">
+<summary>
+ Writes a string and CRLF as ASCII
+</summary>
+</member>
+<member name="T:HttpFs.Logging.Logger">
+<summary>
+ The primary Logger abstraction that you can log data into
+</summary>
+</member>
+<member name="P:HttpFs.Logging.Message.timestamp">
+<summary>
+ timestamp when this log line was created
+</summary>
+</member>
+<member name="P:HttpFs.Logging.Message.fields">
+<summary>
+ Any key-value data pairs to log or interpolate into the message
+ template.
+</summary>
+</member>
+<member name="P:HttpFs.Logging.Message.value">
+<summary>
+ the message that the application wants to log
+</summary>
+</member>
+<member name="P:HttpFs.Logging.Message.path">
+<summary>
+ the source of the log line, e.g. &apos;ModuleName.FunctionName&apos;
+</summary>
+</member>
+<member name="P:HttpFs.Logging.Message.level">
+<summary>
+ the level that this log line has
+</summary>
+</member>
+<member name="T:HttpFs.Logging.Message">
+<summary>
+ When logging, write a Message like this with the source of your
+ log line as well as a message and an optional exception.
+</summary>
+</member>
+<member name="T:HttpFs.Logging.LogLevel.Fatal">
+<summary>
+ The least verbose level. Will only pass through fatal
+ log lines that cause the application to crash or become
+ unusable.
+</summary>
+</member>
+<member name="T:HttpFs.Logging.LogLevel.Error">
+<summary>
+ Less verbose than Warn, more verbose than Fatal
+</summary>
+</member>
+<member name="T:HttpFs.Logging.LogLevel.Warn">
+<summary>
+ Less verbose than Info, more verbose than Error
+</summary>
+</member>
+<member name="T:HttpFs.Logging.LogLevel.Info">
+<summary>
+ Less verbose than Debug, more verbose than Warn
+</summary>
+</member>
+<member name="T:HttpFs.Logging.LogLevel.Debug">
+<summary>
+ Less verbose than Verbose, more verbose than Info
+</summary>
+</member>
+<member name="T:HttpFs.Logging.LogLevel.Verbose">
+<summary>
+ The most verbose log level, more verbose than Debug.
+</summary>
+</member>
+<member name="M:HttpFs.Logging.LogLevel.ToString">
+<summary>
+ Convert the LogLevel to a string
+</summary>
+</member>
+<member name="M:HttpFs.Logging.LogLevel.ToInt">
+<summary>
+ Turn the LogLevel into an integer
+</summary>
+</member>
+<member name="M:HttpFs.Logging.LogLevel.FromString(System.String)">
+<summary>
+ Converts the string passed to a Loglevel.
+</summary>
+</member>
+<member name="M:HttpFs.Logging.LogLevel.FromInt(System.Int32)">
+<summary>
+ Turn an integer into a LogLevel
+</summary>
+</member>
+<member name="T:HttpFs.Logging.LogLevel">
+<summary>
+ The log levels specify the severity of the message.
+</summary>
+</member>
+<member name="M:YoLo.AsyncBuilder.Bind``1(Microsoft.FSharp.Control.FSharpAsyncBuilder,System.Threading.Tasks.Task,Microsoft.FSharp.Core.FSharpFunc{Microsoft.FSharp.Core.Unit,Microsoft.FSharp.Control.FSharpAsync{``0}})">
+<summary>
+ An extension method that overloads the standard &apos;Bind&apos; of the &apos;async&apos; builder. The new overload awaits on
+ a standard .NET task which does not commpute a value
+</summary>
+</member>
+<member name="M:YoLo.AsyncBuilder.Bind``2(Microsoft.FSharp.Control.FSharpAsyncBuilder,System.Threading.Tasks.Task{``0},Microsoft.FSharp.Core.FSharpFunc{``0,Microsoft.FSharp.Control.FSharpAsync{``1}})">
+<summary>
+ An extension method that overloads the standard &apos;Bind&apos; of the &apos;async&apos; builder. The new overload awaits on
+ a standard .NET task
+</summary>
+</member>
+<member name="M:YoLo.Async.AwaitTask.Static(System.Threading.Tasks.Task)">
+<summary>
+ Await a task asynchronously
+</summary>
+</member>
+<member name="M:YoLo.Async.AsyncRaise.Static``1(System.Exception)">
+<summary>
+ Raise an exception on the async computation/workflow.
+</summary>
+</member>
+<member name="M:YoLo.Random.NextUInt64(System.Random)">
+<summary>
+ generate a new random ulong64 value
+</summary>
+</member>
+<member name="P:YoLo.App.resource">
+<summary>
+ Get the current assembly resource
+</summary>
+</member>
+<member name="M:YoLo.App.resourceIn(System.Reflection.Assembly,System.String)">
+<summary>
+ Get the assembly resource
+</summary>
+</member>
+<member name="M:YoLo.App.getVersion">
+<summary>
+ Gets the calling assembly&apos;s informational version number as a string
+</summary>
+</member>
+<member name="M:YoLo.List.sequenceChoiceA``2(Microsoft.FSharp.Collections.FSharpList{Microsoft.FSharp.Core.FSharpChoice{``0,``1}})">
+<summary>
+ Transform a &quot;list&lt;Choice&gt;&quot; into a &quot;Choice&lt;list&gt;&quot; and collect the results
+ using apply.
+</summary>
+</member>
+<member name="M:YoLo.List.traverseChoiceA``3(Microsoft.FSharp.Core.FSharpFunc{``0,Microsoft.FSharp.Core.FSharpChoice{``1,``2}},Microsoft.FSharp.Collections.FSharpList{``0})">
+<summary>
+ Map a Choice-producing function over a list to get a new Choice using
+ applicative style. (&apos;a -&gt; Choice&lt;&apos;b, &apos;c&gt;) -&gt; &apos;a list -&gt; Choice&lt;&apos;b list, &apos;c&gt;
+</summary>
+</member>
+<member name="M:YoLo.List.sequenceAsyncA``1(Microsoft.FSharp.Collections.FSharpList{Microsoft.FSharp.Control.FSharpAsync{``0}})">
+<summary>
+ Transform a &quot;list&lt;Async&gt;&quot; into a &quot;Async&lt;list&gt;&quot; and collect the results
+ using apply.
+</summary>
+</member>
+<member name="M:YoLo.List.traverseAsyncA``2(Microsoft.FSharp.Core.FSharpFunc{``0,Microsoft.FSharp.Control.FSharpAsync{``1}},Microsoft.FSharp.Collections.FSharpList{``0})">
+<summary>
+ Map a Async producing function over a list to get a new Async using
+ applicative style. (&apos;a -&gt; Async&lt;&apos;b&gt;) -&gt; &apos;a list -&gt; Async&lt;&apos;b list&gt;
+</summary>
+</member>
+<member name="M:YoLo.List.chunk``1(System.UInt32,Microsoft.FSharp.Collections.FSharpList{``0})">
+<summary>
+ Chunk a list into pageSize large chunks
+</summary>
+</member>
+<member name="M:YoLo.List.split``1(System.UInt32,Microsoft.FSharp.Collections.FSharpList{``0})">
+<summary>
+ Split xs at n, into two lists, or where xs ends if xs.Length &lt; n.
+</summary>
+</member>
+<member name="M:YoLo.Regex.match(System.String,System.String)">
+<summary>
+ Match the `input` against the regex `pattern`. You can do a 
+ `Seq.cast&lt;Group&gt;` on the result to get it as a sequence
+ and also index with `.[&quot;name&quot;]` into the result if you have
+ named capture groups.
+</summary>
+</member>
+<member name="M:YoLo.Array.equalsConstantTime``1(``0[],``0[])">
+<summary>
+ Ordinally compare two arrays in constant time, bounded by the length of the
+ longest array. This function uses the F# language equality.
+</summary>
+</member>
+<member name="M:YoLo.Comparisons.hashOn``2(Microsoft.FSharp.Core.FSharpFunc{``0,``1},``0)">
+<summary>
+ hash x on the selected value from f
+</summary>
+</member>
+<member name="M:YoLo.Comparisons.equalsOn``2(Microsoft.FSharp.Core.FSharpFunc{``0,``1},``0,System.Object)">
+<summary>
+ check equality on x and y mapped on selected value from function f
+</summary>
+</member>
+<member name="M:YoLo.Comparisons.compareOn``2(Microsoft.FSharp.Core.FSharpFunc{``0,``1},``0,System.Object)">
+<summary>
+ compare x to yobj mapped on selected value from function f
+</summary>
+</member>
+<member name="P:YoLo.UTF8.decodeBase64">
+<summary>
+ Convert the passed string `s`, assumed to be a valid Base64 encoding, to a
+ CLR string, going through UTF8.
+</summary>
+</member>
+<member name="P:YoLo.UTF8.encodeBase64">
+<summary>
+ Convert the passed string `s` to UTF8 and then encode the buffer with
+ base64.
+</summary>
+</member>
+<member name="M:YoLo.UTF8.bytes(System.String)">
+<summary>
+ Get the UTF8-encoding of the string.
+</summary>
+</member>
+<member name="M:YoLo.UTF8.toStringAtOffset(System.Byte[],System.Int32,System.Int32)">
+<summary>
+ Convert the byte array to a string, by indexing into the passed buffer `b`
+ and taking `count` bytes from it.
+</summary>
+</member>
+<member name="M:YoLo.UTF8.toString(System.Byte[])">
+<summary>
+ Convert the full buffer `b` filled with UTF8-encoded strings into a CLR
+ string.
+</summary>
+</member>
+<member name="M:YoLo.Map.put``2(``0,``1,Microsoft.FSharp.Collections.FSharpMap{``0,``1})">
+<summary>
+ put a key to the map; if it&apos;s not there already, just add it
+ otherwise, remove the existing key and place it there.
+</summary>
+</member>
+<member name="M:YoLo.Bytes.equalsConstantTime(System.Byte[],System.Byte[])">
+<summary>
+ Compare two byte arrays in constant time, bounded by the length of the
+ longest byte array.
+</summary>
+</member>
+<member name="M:YoLo.String.equalsConstantTime(System.String,System.String)">
+<summary>
+ Ordinally compare two strings in constant time, bounded by the length of the
+ longest string.
+</summary>
+</member>
+<member name="M:YoLo.String.equalsOrdinalCI(System.String,System.String)">
+<summary>
+ Compare ordinally with ignore case.
+</summary>
+</member>
+<member name="M:YoLo.String.equalsCaseInsensitive(System.String,System.String)">
+<summary>
+ Also, invariant culture
+</summary>
+</member>
+<member name="M:YoLo.String.equals(System.String,System.String)">
+<summary>
+ Also, invariant culture
+</summary>
+</member>
+</members>
+</doc>

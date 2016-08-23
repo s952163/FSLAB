@@ -35,8 +35,58 @@
       <hr />
       <div class="row">
         <div class="span9" id="main">
-          <h4>4.31.1 - 14.07.2016</h4>
+          <h4>4.38.1 - 22.08.2016</h4>
 <ul>
+<li>BUGFIX: TERM environment property should be upper case - <a href="https://github.com/fsharp/FAKE/pull/1363">https://github.com/fsharp/FAKE/pull/1363</a></li>
+</ul>
+<h4>4.38.0 - 22.08.2016</h4>
+<ul>
+<li>BUGFIX: System.ArgumentNullException thrown for colored output on mono - <a href="https://github.com/fsharp/FAKE/pull/1362">https://github.com/fsharp/FAKE/pull/1362</a></li>
+<li>BUGFIX: Trim assembly info attribute value - <a href="https://github.com/fsharp/FAKE/pull/1361">https://github.com/fsharp/FAKE/pull/1361</a></li>
+<li>BUGFIX: Not printing MSBUILD command line twice - <a href="https://github.com/fsharp/FAKE/pull/1359">https://github.com/fsharp/FAKE/pull/1359</a></li>
+<li>BUGFIX: Semver parse fix to handle prereleases and build parts - <a href="https://github.com/fsharp/FAKE/pull/1325">https://github.com/fsharp/FAKE/pull/1325</a></li>
+<li>BUGFIX: Fixed FSCHelper -<a href="https://github.com/fsharp/FAKE/pull/1351,">https://github.com/fsharp/FAKE/pull/1351,</a> <a href="https://github.com/fsharp/FAKE/pull/1352">https://github.com/fsharp/FAKE/pull/1352</a></li>
+</ul>
+<h4>4.37.0 - 09.08.2016</h4>
+<ul>
+<li>New Octopus command for push - <a href="https://github.com/fsharp/FAKE/pull/1349">https://github.com/fsharp/FAKE/pull/1349</a></li>
+<li>New GitVersionHelper - <a href="https://github.com/fsharp/FAKE/pull/1319">https://github.com/fsharp/FAKE/pull/1319</a></li>
+<li>BUGFIX: Fixed multiple references for DLL in Fsc helper - <a href="https://github.com/fsharp/FAKE/pull/1350">https://github.com/fsharp/FAKE/pull/1350</a></li>
+<li>BUGFIX: Fixed NugetHelper.fs: GetPackageVersion - <a href="https://github.com/fsharp/FAKE/pull/1343">https://github.com/fsharp/FAKE/pull/1343</a></li>
+<li>BUGFIX: Fixed detection of GitLab CI with current multi-runner - <a href="https://github.com/fsharp/FAKE/pull/1345">https://github.com/fsharp/FAKE/pull/1345</a></li>
+</ul>
+<h4>4.36.0 - 01.08.2016</h4>
+<ul>
+<li>Added methods to cover manipulation of Content Nodes in project files - <a href="https://github.com/fsharp/FAKE/pull/1335">https://github.com/fsharp/FAKE/pull/1335</a></li>
+<li>BUGFIX: Fix Fsc short toggle argument format - <a href="https://github.com/fsharp/FAKE/pull/1339">https://github.com/fsharp/FAKE/pull/1339</a></li>
+<li>BUGFIX: Update search pattern in NuGet helper - <a href="https://github.com/fsharp/FAKE/pull/1334">https://github.com/fsharp/FAKE/pull/1334</a></li>
+<li>BUGFIX: Expanded typescript search paths on windows to cover all new typescript compilers - <a href="https://github.com/fsharp/FAKE/pull/1308">https://github.com/fsharp/FAKE/pull/1308</a></li>
+</ul>
+<h4>4.35.0 - 24.07.2016</h4>
+<ul>
+<li>New registry support in WiXHelper - <a href="https://github.com/fsharp/FAKE/pull/1331">https://github.com/fsharp/FAKE/pull/1331</a></li>
+<li>BREAKING CHANGE: Changed DotNet helper to DotNetCLI - <a href="https://github.com/fsharp/FAKE/pull/1332">https://github.com/fsharp/FAKE/pull/1332</a></li>
+<li>BUGFIX: Fixed exception when dotnet cli is not installed - <a href="https://github.com/fsharp/FAKE/pull/1332">https://github.com/fsharp/FAKE/pull/1332</a></li>
+<li>BUGFIX: Fixed git reset helper to use checkout when file resets are requested - <a href="https://github.com/fsharp/FAKE/pull/1326">https://github.com/fsharp/FAKE/pull/1326</a></li>
+<li>BUGFIX: Masked octo api key when tracing - <a href="https://github.com/fsharp/FAKE/pull/1327">https://github.com/fsharp/FAKE/pull/1327</a></li>
+</ul>
+<h4>4.34.5 - 21.07.2016</h4>
+<ul>
+<li>DotNet version support - <a href="https://github.com/fsharp/FAKE/pull/1310">https://github.com/fsharp/FAKE/pull/1310</a></li>
+<li>DotNet test support - <a href="https://github.com/fsharp/FAKE/pull/1311">https://github.com/fsharp/FAKE/pull/1311</a></li>
+<li>DotNet build support - <a href="https://github.com/fsharp/FAKE/pull/1318">https://github.com/fsharp/FAKE/pull/1318</a></li>
+<li>DotNet pack support - <a href="https://github.com/fsharp/FAKE/pull/1313">https://github.com/fsharp/FAKE/pull/1313</a></li>
+<li>Allows to set version in project.json</li>
+<li>Allow to run arbitrary dotnet CLI commands</li>
+<li>Allow to add arbitrary args to all dotnet CLI commands</li>
+<li>DotNet restore support - <a href="https://github.com/fsharp/FAKE/pull/1309">https://github.com/fsharp/FAKE/pull/1309</a></li>
+<li>BUGFIX: Update DACPAC module - <a href="https://github.com/fsharp/FAKE/pull/1307">https://github.com/fsharp/FAKE/pull/1307</a></li>
+</ul>
+<h4>4.32.0 - 18.07.2016</h4>
+<ul>
+<li>BUGFIX: Convert relative path to absolute path when creating NAntXmlTraceListen - <a href="https://github.com/fsharp/FAKE/pull/1305">https://github.com/fsharp/FAKE/pull/1305</a></li>
+<li>BUGFIX: Update DACPAC module - <a href="https://github.com/fsharp/FAKE/pull/1306">https://github.com/fsharp/FAKE/pull/1306</a></li>
+<li>BUGFIX: Fixed FscParam.References issue - <a href="https://github.com/fsharp/FAKE/pull/1304">https://github.com/fsharp/FAKE/pull/1304</a></li>
 <li>REVERT: Better Old-Style Arg parsing - <a href="https://github.com/fsharp/FAKE/pull/1301">https://github.com/fsharp/FAKE/pull/1301</a></li>
 </ul>
 <h4>4.31.0 - 14.07.2016</h4>
