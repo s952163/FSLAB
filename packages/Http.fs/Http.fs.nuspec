@@ -2,7 +2,7 @@
 <package xmlns="http://schemas.microsoft.com/packaging/2013/05/nuspec.xsd">
   <metadata>
     <id>Http.fs</id>
-    <version>3.1.1</version>
+    <version>4.1.0</version>
     <title>Http.fs</title>
     <authors>Grant Crofton, Henrik Feldt</authors>
     <owners>Grant Crofton, Henrik Feldt</owners>
@@ -11,13 +11,13 @@
     <description>A simple, functional HTTP client library for F#</description>
     <releaseNotes>Release Notes:
 
- * [infra] v3.1.1
- * Merge remote-tracking branch 'origin/master' into releases/v3.x
- * Merge pull request #107 from neoeinstein/feature-alt
- * Demonstrate cancelling a request</releaseNotes>
+ * v4.1.0 – new Hopac version (breaking dependency)
+ * [infra] bumping dependencies
+ * [docs] documenting Composition module
+ * Update README.md</releaseNotes>
     <dependencies>
       <dependency id="FSharp.Core" version="3.1.2.5" />
-      <dependency id="Hopac" version="0.3.12" />
+      <dependency id="Hopac" version="0.3.21" />
     </dependencies>
   </metadata>
 </package>

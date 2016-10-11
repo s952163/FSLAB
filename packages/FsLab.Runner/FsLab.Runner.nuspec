@@ -2,7 +2,7 @@
 <package xmlns="http://schemas.microsoft.com/packaging/2011/08/nuspec.xsd">
   <metadata>
     <id>FsLab.Runner</id>
-    <version>1.0.0</version>
+    <version>1.0.1</version>
     <authors>F# Data Science Working Group</authors>
     <owners>F# Data Science Working Group</owners>
     <licenseUrl>http://github.com/fslaborg/FsLab/blob/master/LICENSE.md</licenseUrl>
@@ -11,7 +11,7 @@
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
     <description>This package contains a library for turning FsLab experiments written as script files into HTML and LaTeX reports. The easiest way to use the library is to use the 'FsLab Journal' Visual Studio template.</description>
     <summary>F# Data science report generator</summary>
-    <releaseNotes>Ionide support via AddHtmlPrinter, update dependencies.</releaseNotes>
+    <releaseNotes>- Update FsLab.Runner with latest build.fsx</releaseNotes>
     <copyright>Copyright 2014</copyright>
     <language>en-US</language>
     <tags>F# fsharp deedle series statistics data science r type provider mathnet</tags>

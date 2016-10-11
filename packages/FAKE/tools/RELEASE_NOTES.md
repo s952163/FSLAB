@@ -1,4 +1,33 @@
-#### 4.38.1 - 22.08.2016
+#### 4.41.5 - 10.10.2016
+* BUGFIX: When generating AssemblyMetadata_XYZ for AssemblyInfo, pass just value - https://github.com/fsharp/FAKE/pull/1399
+* BUGFIX: Fixed AssemblyVersion bug - https://github.com/fsharp/FAKE/pull/1397
+
+#### 4.41.4 - 10.10.2016
+* BUGFIX: Fixing the famous chinese FAKE bug
+
+#### 4.41.1 - 06.10.2016
+* Add all assembly metadata to AssemblyVersionInformation typehttps://github.com/fsharp/FAKE/pull/1392
+* Allow additional properties to be specified when running the SQL dacpac tooling - https://github.com/fsharp/FAKE/pull/1386
+* Support for dotnet publish
+* BUGFIX: wixHelper AllowDowngrades - https://github.com/fsharp/FAKE/pull/1389
+* REVERT: Use nuget instead of referenced dlls. Fix SQL Server version issue - https://github.com/fsharp/FAKE/pull/1377
+
+#### 4.40.0 - 19.09.2016
+* Allow to pass parameter to SonarQube end - https://github.com/fsharp/FAKE/pull/1381
+* New helper: Search for files with a given pattern also in subdirectories - https://github.com/fsharp/FAKE/pull/1354
+* Adds comment on top of auto-generated AssemblyInfo.fs files - https://github.com/fsharp/FAKE/pull/1373
+* Use nuget instead of referenced dlls. Fix SQL Server version issue - https://github.com/fsharp/FAKE/pull/1377
+* BUGFIX: NuGetVersion: adds application/xml to request accept header - https://github.com/fsharp/FAKE/pull/1383
+* BUGFIX: Replace process cache with safe alternative - https://github.com/fsharp/FAKE/pull/1378
+* BUGFIX: Call 'traceEndTask' in the finally block of a try-finally, so that it is always closed, even if the task throws an exception. https://github.com/fsharp/FAKE/pull/1379
+* USABILITY: Check for npm on path variable in NpmHelper on Windows - https://github.com/fsharp/FAKE/pull/1371
+
+#### 4.39.0 - 25.08.2016
+* Added Checksum[64][Type] in ChocoHelper - https://github.com/fsharp/FAKE/pull/1367
+* Better support for multiple versions of SqlPackage - https://github.com/fsharp/FAKE/pull/1368
+* Hint shown in for ArgumentException #1355 instead of trying to set it directly - https://github.com/fsharp/FAKE/pull/1366
+* Added isWindows helper - https://github.com/fsharp/FAKE/pull/1356
+* BUGFIX: Made GitVersionHelper PreReleaseNumber Nullable - https://github.com/fsharp/FAKE/pull/1365
 * BUGFIX: TERM environment property should be upper case - https://github.com/fsharp/FAKE/pull/1363
 
 #### 4.38.0 - 22.08.2016

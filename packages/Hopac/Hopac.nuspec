@@ -1,8 +1,8 @@
-﻿<?xml version="1.0" encoding="utf-8" standalone="yes"?>
-<package xmlns="http://schemas.microsoft.com/packaging/2011/10/nuspec.xsd">
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<package xmlns="http://schemas.microsoft.com/packaging/2012/06/nuspec.xsd">
   <metadata>
     <id>Hopac</id>
-    <version>0.3.12</version>
+    <version>0.3.23</version>
     <authors>Housemarque Inc.</authors>
     <owners>Housemarque Inc.</owners>
     <licenseUrl>https://github.com/Hopac/Hopac/blob/master/LICENSE.md</licenseUrl>
@@ -10,12 +10,18 @@
     <iconUrl>https://avatars2.githubusercontent.com/u/10173903</iconUrl>
     <description>Inspired by languages like Concurrent ML and Cilk, Hopac is a library for F# with the aim of making it easier to write efficient parallel, asynchronous, concurrent and reactive programs. Hopac is licensed under a MIT-style license. See project website for further information.</description>
     <summary>A library for Higher-Order, Parallel, Asynchronous and Concurrent programming in F#.</summary>
-    <releaseNotes>* Optimized `MVar.read`, `MVar.mutateFun`, `MVar.modifyFun`, `MVar.tryMutateFun`
-and `MVar.tryModifyFun`.</releaseNotes>
+    <releaseNotes>* Added `idle` to yield the thread of execution.  Thanks to @neoeinstein for the
+pull request!</releaseNotes>
     <copyright>Copyright 2015</copyright>
     <tags>f# fsharp parallel async concurrent reactive</tags>
     <dependencies>
-      <dependency id="FSharp.Core" version="3.1.2.5" />
+      <group>
+        <dependency id="FSharp.Core" version="3.1.2.5"></dependency>
+      </group>
+      <group targetFramework=".NETStandard1.6">
+        <dependency id="FSharp.Core" version="[4.0.1.7-alpha, )"></dependency>
+        <dependency id="NETStandard.Library" version="[1.6.0, )"></dependency>
+      </group>
     </dependencies>
   </metadata>
 </package>

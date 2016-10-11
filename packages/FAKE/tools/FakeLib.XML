@@ -2,6 +2,21 @@
 <doc>
 <assembly><name>FakeLib</name></assembly>
 <members>
+<member name="M:Fake.Checksum.CheckFileHash(System.String,System.String,Microsoft.FSharp.Core.FSharpOption{Fake.ChecksumHashAlgorithm})">
+<summary>
+ Check if the hash in parameter is the valid hash of the file
+</summary>
+</member>
+<member name="M:Fake.Checksum.CalculateFileHash(System.String,Microsoft.FSharp.Core.FSharpOption{Fake.ChecksumHashAlgorithm})">
+<summary>
+ Calculate the hash of a file. Default hash algorithm used: SHA256
+</summary>
+</member>
+<member name="T:Fake.Checksum">
+<summary>
+ Allow to calculate checksum
+</summary>
+</member>
 <member name="M:Fake.AdditionalSyntax.op_EqualsQmarkGreater(System.String,System.String,System.Boolean)">
 <summary>
  Defines a conditional dependency - y is dependent on x if the condition is true
@@ -1018,7 +1033,7 @@
  Creates an attribute which holds the product title
 </summary>
 </member>
-<member name="M:Fake.AssemblyInfoFile.Attribute.StringAttribute(System.String,System.String,System.String)">
+<member name="M:Fake.AssemblyInfoFile.Attribute.StringAttribute(System.String,System.String,System.String,Microsoft.FSharp.Core.FSharpOption{System.String},Microsoft.FSharp.Core.FSharpOption{System.String})">
 <summary>
  Creates a simple attribute with string values. Used as base for other attributes
 </summary>
@@ -2119,6 +2134,34 @@
  The choco push parameter type.
 </summary>
 </member>
+<member name="P:Fake.Choco.ChocoPackParams.Checksum64Type">
+<summary>
+ The type of checksum that the file is validated with. Default: Sha256
+ Used to create chocolateyInstall.ps1 if it doesn&apos;t exists.
+</summary>
+</member>
+<member name="P:Fake.Choco.ChocoPackParams.ChecksumType">
+<summary>
+ The type of checksum that the file is validated with. Default: Sha256
+ Used to create chocolateyInstall.ps1 if it doesn&apos;t exists.
+</summary>
+</member>
+<member name="P:Fake.Choco.ChocoPackParams.Checksum64">
+<summary>
+ The checksum hash value of the PackageDownload64Url resource
+ This allows a checksum to be validated for files that are not local. The checksum type is covered by ChecksumType64.
+ Equivalent to the `--checksum &lt;string&gt;` option of Install-Chocolatey[Zip]Package functions.
+ Used to create chocolateyInstall.ps1 if it doesn&apos;t exists.
+</summary>
+</member>
+<member name="P:Fake.Choco.ChocoPackParams.Checksum">
+<summary>
+ The checksum hash value of the PackageDownloadUrl resource
+ This allows a checksum to be validated for files that are not local. The checksum type is covered by ChecksumType.
+ Equivalent to the `--checksum &lt;string&gt;` option of Install-Chocolatey[Zip]Package functions.
+ Used to create chocolateyInstall.ps1 if it doesn&apos;t exists.
+</summary>
+</member>
 <member name="P:Fake.Choco.ChocoPackParams.UninstallPath">
 <summary>
  Either:
@@ -2521,7 +2564,7 @@
 </member>
 <member name="P:Fake.Choco.ChocoPushDefaults">
 <summary>
- The default option set given to choco pack.
+ The default option set given to choco push.
 </summary>
 </member>
 <member name="P:Fake.Choco.ChocoPackDefaults">
@@ -3261,6 +3304,56 @@
  Contains a task which can be used to run dotnet CLI commands.
 </summary>
 </member>
+<member name="P:Fake.DotNetCli.PublishParams.AdditionalArgs">
+<summary>
+ Additional Args
+</summary>
+</member>
+<member name="P:Fake.DotNetCli.PublishParams.Output">
+<summary>
+ Optional outputh path
+</summary>
+</member>
+<member name="P:Fake.DotNetCli.PublishParams.VersionSuffix">
+<summary>
+ Optional version suffix.
+</summary>
+</member>
+<member name="P:Fake.DotNetCli.PublishParams.Runtime">
+<summary>
+ Allows to test a specific runtime
+</summary>
+</member>
+<member name="P:Fake.DotNetCli.PublishParams.Framework">
+<summary>
+ Allows to publish to a specific framework
+</summary>
+</member>
+<member name="P:Fake.DotNetCli.PublishParams.Configuration">
+<summary>
+ The build configuration.
+</summary>
+</member>
+<member name="P:Fake.DotNetCli.PublishParams.TimeOut">
+<summary>
+ A timeout for the command.
+</summary>
+</member>
+<member name="P:Fake.DotNetCli.PublishParams.WorkingDir">
+<summary>
+ Working directory (optional).
+</summary>
+</member>
+<member name="P:Fake.DotNetCli.PublishParams.ToolPath">
+<summary>
+ ToolPath - usually just &quot;dotnet&quot;
+</summary>
+</member>
+<member name="T:Fake.DotNetCli.PublishParams">
+<summary>
+ DotNet publish parameters
+</summary>
+</member>
 <member name="P:Fake.DotNetCli.PackParams.AdditionalArgs">
 <summary>
  Additional Args
@@ -3444,6 +3537,22 @@
 <member name="M:Fake.DotNetCli.SetVersionInProjectJson(System.String,System.String)">
 <summary>
  Sets version in project.json
+</summary>
+</member>
+<member name="M:Fake.DotNetCli.Publish(Microsoft.FSharp.Core.FSharpFunc{Fake.DotNetCli.PublishParams,Fake.DotNetCli.PublishParams},System.Collections.Generic.IEnumerable{System.String})">
+<summary>
+ Runs the dotnet &quot;publish&quot; command.
+ ## Parameters
+
+  - `setPublishParams` - Function used to overwrite the publish default parameters.
+
+ ## Sample
+
+     !! &quot;src/test/project.json&quot;
+     |&gt; DotNetCli.Publish
+         (fun p -&gt; 
+              { p with 
+                   Configuration = &quot;Release&quot; })
 </summary>
 </member>
 <member name="M:Fake.DotNetCli.Pack(Microsoft.FSharp.Core.FSharpFunc{Fake.DotNetCli.PackParams,Fake.DotNetCli.PackParams},System.Collections.Generic.IEnumerable{System.String})">
@@ -4088,6 +4197,11 @@
 <member name="P:Fake.EnvironmentHelper.isUnix">
 <summary>
  Determines if the current system is an Unix system
+</summary>
+</member>
+<member name="P:Fake.EnvironmentHelper.isWindows">
+<summary>
+ Determines if the current system is a Windows system
 </summary>
 </member>
 <member name="P:Fake.EnvironmentHelper.SystemRoot">
@@ -4840,6 +4954,11 @@
 <member name="M:Fake.FileSystemHelper.TryFindFirstMatchingFile(System.String,System.String)">
 <summary>
  Gets the first file in the directory matching the search pattern as an option value.
+</summary>
+</member>
+<member name="M:Fake.FileSystemHelper.filesInDirMatchingRecursive(System.String,System.IO.DirectoryInfo)">
+<summary>
+ Finds all the files in the directory and in all subdirectories matching the search pattern.
 </summary>
 </member>
 <member name="M:Fake.FileSystemHelper.filesInDirMatching(System.String,System.IO.DirectoryInfo)">
@@ -10864,9 +10983,18 @@ Partial validation for folder name, based on http://msdn.microsoft.com/en-us/lib
  The supported commands of Sonar Qube. It is called with Begin before compilation, and End after compilation.
 </summary>
 </member>
+<member name="M:Fake.SonarQubeHelper.SonarQubeEnd">
+<summary>
+ This task can be used to run the end command of [Sonar Qube](http://sonarqube.org/) on a project.
+
+ ## Sample
+   SonarQubeEnd
+
+</summary>
+</member>
 <member name="M:Fake.SonarQubeHelper.SonarQube(Fake.SonarQubeHelper.SonarQubeCall,Microsoft.FSharp.Core.FSharpFunc{Fake.SonarQubeHelper.SonarQubeParams,Fake.SonarQubeHelper.SonarQubeParams})">
 <summary>
- This task to can be used to run [Sonar Qube](http://conarqube.org/) on a project.
+ This task to can be used to run [Sonar Qube](http://sonarqube.org/) on a project.
  ## Parameters
 
   - `call` - Begin or End, to start analysis or finish it
@@ -10916,6 +11044,16 @@ Partial validation for folder name, based on http://msdn.microsoft.com/en-us/lib
 <member name="T:Fake.SpecFlowHelper">
 <summary>
  Contains a task which allows to run [SpecFlow](http://www.specflow.org/) tests.
+</summary>
+</member>
+<member name="P:Fake.Sql.DacPac.DeployDbArgs.AdditionalSqlPackageProperties">
+<summary>
+ Additional configuration parameters required by sqlpackage.exe
+</summary>
+</member>
+<member name="P:Fake.Sql.DacPac.DeployDbArgs.RecreateDb">
+<summary>
+ Recreates the database from scratch on publish (rather than an in-place update). Defaults to false.
 </summary>
 </member>
 <member name="P:Fake.Sql.DacPac.DeployDbArgs.DropObjectsNotInSource">
@@ -10986,6 +11124,11 @@ Partial validation for folder name, based on http://msdn.microsoft.com/en-us/lib
 <member name="P:Fake.Sql.DacPac.defaultDeploymentArgs">
 <summary>
  The default DacPac deployment arguments.
+</summary>
+</member>
+<member name="P:Fake.Sql.DacPac.PropertyKeys.sqlAzureDbSize">
+<summary>
+ When creating a new SQL Azure database, specifies the database service tier to use e.g. S2, P1
 </summary>
 </member>
 <member name="T:Fake.Sql.DacPac">
@@ -16331,6 +16474,31 @@ get component refs from a directory component hierarchy
 <member name="M:Yaaf.FSharp.Scripting.Extensions.IFsiSession.EvalExpression``1(Yaaf.FSharp.Scripting.IFsiSession,System.String)">
 <summary>
  Evaluate the given expression and return its result.
+</summary>
+</member>
+<member name="M:Yaaf.FSharp.Scripting.Extensions.IFsiSession.EvalScriptAsInteraction(Yaaf.FSharp.Scripting.IFsiSession,System.String)">
+<summary>
+ See https://github.com/Microsoft/visualfsharp/issues/1392
+</summary>
+</member>
+<member name="M:Yaaf.FSharp.Scripting.Extensions.IFsiSession.EvalScriptAsInteractionWithOutput(Yaaf.FSharp.Scripting.IFsiSession,System.String)">
+<summary>
+ See https://github.com/Microsoft/visualfsharp/issues/1392
+</summary>
+</member>
+<member name="M:Yaaf.FSharp.Scripting.StringHelpers.String.splitUnescape(System.Char,System.String,System.String)">
+<summary>
+ Reproduces the original substrings from a string created with concatEscape.
+</summary>
+</member>
+<member name="M:Yaaf.FSharp.Scripting.StringHelpers.String.concatEscape(System.Char,System.String,System.Collections.Generic.IEnumerable{System.String})">
+<summary>
+ Returns a new string by connecting the given strings with the given separator.
+</summary>
+</member>
+<member name="M:Yaaf.FSharp.Scripting.StringHelpers.Tokenizer.create(System.Char,System.String)">
+<summary>
+ Returns a function who can convert a given source string to a token stream.
 </summary>
 </member>
 <member name="M:Yaaf.FSharp.Scripting.CompilerServiceExtensions.Type.get_FSharpFullNameWithTypeArgs(System.Type)">

@@ -259,16 +259,13 @@
         <member name="T:Hopac.Core.Work">
              <summary>Work item.</summary>
             </member>
-        <member name="T:Hopac.Core.IBindAsyncCont`1">
-            
-            </member>
-        <member name="M:Hopac.Core.IBindAsyncCont`1.Success(`0)">
-            
-            </member>
-        <member name="M:Hopac.Core.IBindAsyncCont`1.Failure(System.Exception)">
-            
-            </member>
         <member name="T:Hopac.Core.BindAsyncCont`2">
+            
+            </member>
+        <member name="M:Hopac.Core.BindAsyncCont`2.InternalInit(Hopac.Core.Cont{`1})">
+            
+            </member>
+        <member name="M:Hopac.Core.BindAsyncCont`2.Do(`0)">
             
             </member>
         <member name="M:Hopac.Core.BindAsyncCont`2.Success(`0)">
@@ -280,10 +277,7 @@
         <member name="T:Hopac.Core.BindAsync`2">
             
             </member>
-        <member name="M:Hopac.Core.BindAsync`2.Do(`0)">
-            
-            </member>
-        <member name="M:Hopac.Core.BindAsync`2.Start(Hopac.Core.IBindAsyncCont{`0})">
+        <member name="M:Hopac.Core.BindAsync`2.Start(Hopac.Core.Cont{`1})">
             
             </member>
         <member name="T:Hopac.Core.FromAsyncCont`1">
@@ -299,6 +293,15 @@
             
             </member>
         <member name="M:Hopac.Core.FromAsync`1.Start(Hopac.Core.FromAsyncCont{`0})">
+            
+            </member>
+        <member name="T:Hopac.Core.OnThreadPool`1">
+            
+            </member>
+        <member name="M:Hopac.Core.OnThreadPool`1.Run">
+            
+            </member>
+        <member name="M:Hopac.Core.OnThreadPool`1.Start(Hopac.Core.FromAsyncCont{`0})">
             
             </member>
         <member name="T:Hopac.Core.FromBeginEnd`1">
@@ -385,13 +388,28 @@
         <member name="T:Hopac.Job`1">
              <summary>Represents a lightweight thread of execution.</summary>
             </member>
-        <member name="T:Hopac.Core.JobBind`2">
+        <member name="T:Hopac.Core.JobCont`2">
             
             </member>
-        <member name="M:Hopac.Core.JobBind`2.InternalInit(Hopac.Job{`0})">
+        <member name="M:Hopac.Core.JobCont`2.InternalInit(Hopac.Job{`0})">
             
             </member>
-        <member name="M:Hopac.Core.JobBind`2.Do(`0)">
+        <member name="M:Hopac.Core.JobCont`2.Do">
+            
+            </member>
+        <member name="T:Hopac.Core.JobContCont`2">
+            
+            </member>
+        <member name="T:Hopac.Core.ContBind`2">
+            
+            </member>
+        <member name="M:Hopac.Core.ContBind`2.Do(`0)">
+            
+            </member>
+        <member name="T:Hopac.Core.ContMap`2">
+            
+            </member>
+        <member name="M:Hopac.Core.ContMap`2.Do(`0)">
             
             </member>
         <member name="T:Hopac.Core.JobUsing`2">
@@ -484,15 +502,6 @@
         <member name="M:Hopac.Core.JobTryWithDelay`1.Do">
             
             </member>
-        <member name="T:Hopac.Core.JobMap`2">
-            
-            </member>
-        <member name="M:Hopac.Core.JobMap`2.InternalInit(Hopac.Job{`0})">
-            
-            </member>
-        <member name="M:Hopac.Core.JobMap`2.Do(`0)">
-            
-            </member>
         <member name="T:Hopac.Core.JobRun`1">
             
             </member>
@@ -565,22 +574,13 @@
         <member name="T:Hopac.Alt`1">
              <summary>Represents a first class synchronous operation.</summary>
             </member>
-        <member name="T:Hopac.Core.AltAfterJob`2">
+        <member name="T:Hopac.Core.AltAfter`2">
             
             </member>
-        <member name="M:Hopac.Core.AltAfterJob`2.InternalInit(Hopac.Alt{`0})">
+        <member name="M:Hopac.Core.AltAfter`2.InternalInit(Hopac.Alt{`0})">
             
             </member>
-        <member name="M:Hopac.Core.AltAfterJob`2.Do(`0)">
-            
-            </member>
-        <member name="T:Hopac.Core.AltAfterFun`2">
-            
-            </member>
-        <member name="M:Hopac.Core.AltAfterFun`2.InternalInit(Hopac.Alt{`0})">
-            
-            </member>
-        <member name="M:Hopac.Core.AltAfterFun`2.Do(`0)">
+        <member name="M:Hopac.Core.AltAfter`2.Do">
             
             </member>
         <member name="T:Hopac.Core.AltPrepareFun`1">
